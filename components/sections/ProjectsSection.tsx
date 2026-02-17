@@ -125,7 +125,7 @@ export function ProjectsSection() {
                   }}
                   animate={{ scaleX: hoveredId === project.id ? 1 : 0 }}
                   initial={{ scaleX: 0 }}
-                  style2={{ transformOrigin: "left" }}
+                  style={{ transformOrigin: "left" }}
                   transition={{ duration: 0.3 }}
                 />
               </div>
