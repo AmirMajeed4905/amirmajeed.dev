@@ -29,108 +29,109 @@ export function ProjectsSection() {
         </FadeInUp>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, i) => (
+  {projects.map((project, i) => (
+    <motion.div
+      key={project.id}
+      className="border-animated h-full"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, delay: i * 0.1, ease: [0.23, 1, 0.32, 1] }}
+      onHoverStart={() => setHoveredId(project.id)}
+      onHoverEnd={() => setHoveredId(null)}
+    >
+      <div className="border-animated-inner p-6 flex flex-col h-full group">
+        {/* Card glow on hover */}
+        <motion.div
+          className="absolute inset-0 rounded-[18px] pointer-events-none"
+          animate={{
+            boxShadow: hoveredId === project.id
+              ? "0 20px 60px rgba(124,58,237,0.3), inset 0 1px 0 rgba(168,85,247,0.1)"
+              : "none",
+          }}
+          transition={{ duration: 0.4 }}
+        />
+
+        {/* Header */}
+        <div className="flex items-start justify-between mb-4">
+          <div className="relative">
             <motion.div
-              key={project.id}
-              className="border-animated h-full"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.23, 1, 0.32, 1] }}
-              onHoverStart={() => setHoveredId(project.id)}
-              onHoverEnd={() => setHoveredId(null)}
+              className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl"
+              style={{
+                background: "linear-gradient(135deg, rgba(124,58,237,0.2), rgba(232,121,249,0.15))",
+                border: "1px solid rgba(124,58,237,0.3)",
+              }}
+              whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+              transition={{ duration: 0.4 }}
             >
-              <div className="border-animated-inner p-6 flex flex-col h-full group">
-                {/* Card glow on hover */}
-                <motion.div
-                  className="absolute inset-0 rounded-[18px] pointer-events-none"
-                  animate={{
-                    boxShadow: hoveredId === project.id
-                      ? "0 20px 60px rgba(124,58,237,0.3), inset 0 1px 0 rgba(168,85,247,0.1)"
-                      : "none",
-                  }}
-                  transition={{ duration: 0.4 }}
-                />
+              {project.emoji}
+            </motion.div>
+            {project.featured && (
+              <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-fuchsia-500 flex items-center justify-center">
+                <Star className="w-2.5 h-2.5 text-white fill-white" />
+              </div>
+            )}
+          </div>
+          <div className="flex gap-2">
+            {project.url !== "#" && (
+              <a href={project.url} target="_blank" rel="noreferrer"
+                className="glass-card p-2 rounded-xl hover:scale-110 transition-transform"
+                style={{ color: "var(--violet-glow)" }}>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            )}
+            {project.github !== "#" && (
+              <a href={project.github} target="_blank" rel="noreferrer"
+                className="glass-card p-2 rounded-xl hover:scale-110 transition-transform"
+                style={{ color: "var(--violet-glow)" }}>
+                <Github className="w-3.5 h-3.5" />
+              </a>
+            )}
+          </div>
+        </div>
 
-                {/* Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="relative">
-                    <motion.div
-                      className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl"
-                      style={{
-                        background: "linear-gradient(135deg, rgba(124,58,237,0.2), rgba(232,121,249,0.15))",
-                        border: "1px solid rgba(124,58,237,0.3)",
-                      }}
-                      whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      {project.emoji}
-                    </motion.div>
-                    {project.featured && (
-                      <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-fuchsia-500 flex items-center justify-center">
-                        <Star className="w-2.5 h-2.5 text-white fill-white" />
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex gap-2">
-                    {project.url !== "#" && (
-                      <a href={project.url} target="_blank" rel="noreferrer"
-                        className="glass-card p-2 rounded-xl hover:scale-110 transition-transform"
-                        style={{ color: "var(--violet-glow)" }}>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                    )}
-                    {project.github !== "#" && (
-                      <a href={project.github} target="_blank" rel="noreferrer"
-                        className="glass-card p-2 rounded-xl hover:scale-110 transition-transform"
-                        style={{ color: "var(--violet-glow)" }}>
-                        <Github className="w-3.5 h-3.5" />
-                      </a>
-                    )}
-                  </div>
-                </div>
+        {/* Content */}
+        <div className="flex-1">
+          <h3 className="font-syne font-bold text-lg mb-2" style={{ color: "var(--text-primary)" }}>
+            {project.name}
+          </h3>
+          <p className="font-dm text-sm leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
+            {project.desc}
+          </p>
+        </div>
 
-                {/* Content */}
-                <div className="flex-1">
-                  <h3 className="font-syne font-bold text-lg mb-2" style={{ color: "var(--text-primary)" }}>
-                    {project.name}
-                  </h3>
-                  <p className="font-dm text-sm leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
-                    {project.desc}
-                  </p>
-                </div>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 mt-auto">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 rounded-lg text-xs font-semibold font-dm"
-                      style={{
-                        background: "rgba(124,58,237,0.12)",
-                        color: "var(--violet-glow)",
-                        border: "1px solid rgba(124,58,237,0.2)",
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Bottom hover bar */}
-                <motion.div
-  className="mt-4 h-px rounded-full"
-  style={{
-    background: "linear-gradient(90deg, #7c3aed, #e879f9, #06b6d4)",
-    transformOrigin: "left"
-  }}
-  animate={{ scaleX: hoveredId === project.id ? 1 : 0 }}
-  initial={{ scaleX: 0 }}
-  transition={{ duration: 0.3 }}
-/>
-
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5 mt-auto">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-2.5 py-1 rounded-lg text-xs font-semibold font-dm"
+              style={{
+                background: "rgba(124,58,237,0.12)",
+                color: "var(--violet-glow)",
+                border: "1px solid rgba(124,58,237,0.2)",
+              }}
+            >
+              {tag}
+            </span>
           ))}
         </div>
+
+        {/* Bottom hover bar */}
+        <motion.div
+          className="mt-4 h-px rounded-full"
+          style={{
+            background: "linear-gradient(90deg, #7c3aed, #e879f9, #06b6d4)",
+            transformOrigin: "left",
+          }}
+          animate={{ scaleX: hoveredId === project.id ? 1 : 0 }}
+          initial={{ scaleX: 0 }}
+          transition={{ duration: 0.3 }}
+        />
+      </div>
+    </motion.div>
+  ))}
+</div>
 
         {/* CTA */}
         <FadeInUp delay={0.3}>
