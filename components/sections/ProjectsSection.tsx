@@ -119,17 +119,16 @@ export function ProjectsSection() {
 
                 {/* Bottom hover bar */}
                 <motion.div
-                  className="mt-4 h-px rounded-full"
-                  style={{
-                    background: "linear-gradient(90deg, #7c3aed, #e879f9, #06b6d4)",
-                  }}
-                  animate={{ scaleX: hoveredId === project.id ? 1 : 0 }}
-                  initial={{ scaleX: 0 }}
-                  style={{ transformOrigin: "left" }}
-                  transition={{ duration: 0.3 }}
-                />
-              </div>
-            </motion.div>
+  className="mt-4 h-px rounded-full"
+  style={{
+    background: "linear-gradient(90deg, #7c3aed, #e879f9, #06b6d4)",
+    transformOrigin: "left"
+  }}
+  animate={{ scaleX: hoveredId === project.id ? 1 : 0 }}
+  initial={{ scaleX: 0 }}
+  transition={{ duration: 0.3 }}
+/>
+
           ))}
         </div>
 
