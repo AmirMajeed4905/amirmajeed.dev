@@ -139,13 +139,13 @@ export function Navbar() {
                   {link.label}
                 </motion.a>
               ))}
-              <Link
+              {/* <Link
                 href="/dashboard"
                 onClick={() => setMobileOpen(false)}
                 className="mt-4 px-8 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-500 text-white font-semibold"
               >
                 Dashboard ⚡
-              </Link>
+              </Link> */}
             </motion.nav>
           </motion.div>
         )}
