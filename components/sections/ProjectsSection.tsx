@@ -137,7 +137,7 @@ export function ProjectsSection() {
         <FadeInUp delay={0.3}>
           <div className="text-center mt-12">
             <a
-              href="https://github.com"
+              href="https://github.com/AmirMajeed4905"
               target="_blank"
               rel="noreferrer"
               className="btn-shine inline-flex items-center gap-2 px-8 py-4 rounded-2xl glass-card font-semibold font-dm hover:-translate-y-1 transition-all duration-300"
