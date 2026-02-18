@@ -5,10 +5,10 @@ import { SectionLabel, SectionHeading, GradientText, FadeInUp } from "@/componen
 import { Send, Github, Linkedin, Twitter, Youtube, Mail, MapPin, CheckCircle } from "lucide-react";
 
 const socials = [
-  { icon: Github, label: "GitHub", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Twitter, label: "Twitter", href: "#" },
-  { icon: Youtube, label: "YouTube", href: "#" },
+  { icon: Github, label: "GitHub", href: "https://github.com/AmirMajeed4905" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/amir-majeed-03674628b/" },
+  { icon: Twitter, label: "Twitter", href: "twitter.com" },
+  { icon: Youtube, label: "YouTube", href: "youtube.com" },
 ];
 
 export function ContactSection() {
